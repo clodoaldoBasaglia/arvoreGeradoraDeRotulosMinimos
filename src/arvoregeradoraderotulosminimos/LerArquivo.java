@@ -5,10 +5,31 @@
  */
 package arvoregeradoraderotulosminimos;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author clodoaldo
  */
 public class LerArquivo {
-    
+
+    String lerArquivo(String caminho) {
+        try {
+            List<String> linhas = new ArrayList<String>();
+            File arq = new File(caminho);
+            BufferedReader bfr = null;
+            bfr = new BufferedReader(new FileReader(arq));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LerArquivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return " ";
+    }
+
 }
