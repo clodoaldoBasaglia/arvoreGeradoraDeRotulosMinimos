@@ -1,0 +1,2 @@
+# arvoreGeradoraDeRotulosMinimos
+arvoreGeradoraDeRotulosMinimos
