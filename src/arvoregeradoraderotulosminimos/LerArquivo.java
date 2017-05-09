@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,6 +27,15 @@ public class LerArquivo {
             File arq = new File(caminho);
             BufferedReader bfr = null;
             bfr = new BufferedReader(new FileReader(arq));
+            try {
+                while(bfr.readLine()!=null){
+                    String teste = bfr.readLine();
+                    System.out.println(teste);
+                }
+                
+            } catch (IOException ex) {
+                Logger.getLogger(LerArquivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LerArquivo.class.getName()).log(Level.SEVERE, null, ex);
         }

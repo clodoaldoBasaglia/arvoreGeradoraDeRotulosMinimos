@@ -16,6 +16,9 @@ public class ArvoreGeradoraDeRotulosMinimos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        String caminho = "/home/clodoaldo/Documentos/APS.Teoria.dos.Grafos.2017.1/instancias/GROUP 1/HDGraph20_20.txt";
+        LerArquivo la = new LerArquivo();
+        la.lerArquivo(caminho);
     }
     
 }
