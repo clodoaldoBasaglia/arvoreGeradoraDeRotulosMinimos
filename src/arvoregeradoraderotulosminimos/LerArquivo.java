@@ -21,6 +21,14 @@ import java.util.logging.Logger;
  */
 public class LerArquivo {
 
+    public File LerArquivo(String caminho) {
+        File arq = new File(caminho);
+        if (arq.isFile()) {
+            return arq;
+        }
+        return null;
+    }
+
     String lerArquivo(String caminho) {
         try {
             List<String> linhas = new ArrayList<String>();
@@ -28,11 +36,11 @@ public class LerArquivo {
             BufferedReader bfr = null;
             bfr = new BufferedReader(new FileReader(arq));
             try {
-                while(bfr.readLine()!=null){
+                while (bfr.readLine() != null) {
                     String teste = bfr.readLine();
                     System.out.println(teste);
                 }
-                
+
             } catch (IOException ex) {
                 Logger.getLogger(LerArquivo.class.getName()).log(Level.SEVERE, null, ex);
             }
