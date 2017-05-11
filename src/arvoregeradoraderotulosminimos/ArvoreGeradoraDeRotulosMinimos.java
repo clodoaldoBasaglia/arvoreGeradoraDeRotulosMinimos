@@ -5,6 +5,9 @@
  */
 package arvoregeradoraderotulosminimos;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  *
  * @author clodoaldo
@@ -18,7 +21,8 @@ public class ArvoreGeradoraDeRotulosMinimos {
         // TODO code application logic here
         String caminho = "/home/clodoaldo/Documentos/APS.Teoria.dos.Grafos.2017.1/instancias/";
         SondaDeArquivos sdd = new SondaDeArquivos();
-        sdd.sondaDeArquivos(caminho);
+        Map<String, ArrayList<String>> sondaDeArquivos = sdd.sondaDeArquivos(caminho);
+        
     }
     
 }
