@@ -77,9 +77,12 @@ public class LerArquivo {
         int aux = 0;
         int pos = 0;
 
+        //Enquanto não houver mais o que ser lido, continuar
         while (((linha = br.readLine()) != null)) {
+            //Caso um grafo inteiro já foi lido
             if (i % vertices == 0) {
-            	if (aux != 0) {
+                //Caso não seja a primeira execução, para não gerar um grafo totalmente nulo
+                if (aux != 0) {
             		Grafos.add(matrizAdjacencia);
             		matrizAdjacencia = new Integer[vertices][vertices];
             	}
@@ -87,21 +90,30 @@ public class LerArquivo {
             }
             s = linha.split(" ");
             
+            //Preenchendo a matriz. Matriz[ultimaLinha até a primeira][Primeiracoluna até a ultima]
             for (int j = 0; j < s.length; j++) {
-
                 if (s[j].equals("")) {
-                	matrizAdjacencia[indice - i - 1][j] = vertices;
+                	matrizAdjacencia[indice - i - 1][j] = rotulos;
                 }
-                else
+                else{
                 	matrizAdjacencia[indice - i - 1][j] = Integer.parseInt(s[j]);
+                        //Espelhando a matriz, pra criar a diagonal superior da Matriz(Grafo não dirigido)
+                        matrizAdjacencia[j][indice - i - 1] = Integer.parseInt(s[j]);
+                }
             }
+            //Setando a diagonal principal. Sem aresta pra outro vértice
+            matrizAdjacencia[indice - i - 1][s.length] = rotulos;
+            matrizAdjacencia[0][0] = rotulos;
+            
             aux++;
             i++;
         }
-
+        Grafos.add(matrizAdjacencia);
+        
         br.close();
         fr.close();
-        
+
+        //Imprimir Array de grafos pra testar
         for (Integer[][] grafo : Grafos){
         	printMatriz(grafo, vertices);
         }
