@@ -26,7 +26,7 @@ public class ProcessaArquivo {
             BufferedReader buff = new BufferedReader(new FileReader(arq));
             try {
                 while ( buff.readLine() != null) {
-                    System.out.println(buff.readLine());
+//                    System.out.println(buff.readLine());
                     texto  = buff.readLine();
                     texto += texto;
                 }

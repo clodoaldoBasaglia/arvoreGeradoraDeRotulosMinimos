@@ -68,7 +68,7 @@ public class LerArquivo {
         int rotulos = Integer.parseInt(s[1]);
 
         int indice = vertices;
-        System.out.println("vertices: " + indice);
+//        System.out.println("vertices: " + indice);
         
         ArrayList <Integer[][]> Grafos = new ArrayList<>();
         Integer[][] matrizAdjacencia = new Integer[vertices][vertices];
@@ -114,9 +114,9 @@ public class LerArquivo {
         fr.close();
 
         //Imprimir Array de grafos pra testar
-        for (Integer[][] grafo : Grafos){
-        	printMatriz(grafo, vertices);
-        }
+//        for (Integer[][] grafo : Grafos){
+//        	printMatriz(grafo, vertices);
+//        }
         
         return Grafos;
     }

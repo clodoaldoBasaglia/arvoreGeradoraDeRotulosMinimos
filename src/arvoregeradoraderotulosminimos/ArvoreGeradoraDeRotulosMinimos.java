@@ -6,9 +6,13 @@
 package arvoregeradoraderotulosminimos;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,29 +25,24 @@ public class ArvoreGeradoraDeRotulosMinimos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        long inicio = System.currentTimeMillis() % 1000;
         LerArquivo la = new LerArquivo();
         String caminho = "/home/clodoaldo/Documentos/APS.Teoria.dos.Grafos.2017.1/instancias/";
         SondaDeArquivos sdd = new SondaDeArquivos();
-        File arq = null;
         Map<String, ArrayList<String>> sondaDeArquivos = sdd.sondaDeArquivos(caminho);
         Iterator<Map.Entry<String, ArrayList<String>>> iterator = sondaDeArquivos.entrySet().iterator();
-        ArrayList<File> arrayDeArquivo = new ArrayList<>();
+        Map<String,ArrayList<Integer[][]>>  mapaGrafos = new HashMap<>();
         while (iterator.hasNext()) {
             String chave = iterator.next().getKey();
             ArrayList<String> get = sondaDeArquivos.get(chave);
             for (String string : get) {
-//                System.out.println(caminho + chave + "/" + string);
-                arq = la.LerArquivo(caminho + chave + "/" + string);
-                arrayDeArquivo.add(arq);
+                try {
+                    ArrayList<Integer[][]> leArquivo = la.leArquivo(caminho + chave + "/" + string);
+                    mapaGrafos.put(string, leArquivo);
+                } catch (IOException ex) {
+                    Logger.getLogger(ArvoreGeradoraDeRotulosMinimos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
-        for (File file : arrayDeArquivo) {
-            String abreArquivo = new ProcessaArquivo().abreArquivo(arq);
-            System.out.println(abreArquivo);
-        }
-        long fim = System.currentTimeMillis() ;
-        System.out.println("Tempo: "+(fim-inicio)+"ms");
     }
 
 }
