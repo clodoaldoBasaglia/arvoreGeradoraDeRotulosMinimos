@@ -38,10 +38,12 @@ public class ArvoreGeradoraDeRotulosMinimos {
                 arrayDeArquivo.add(arq);
             }
         }
-        long fim = System.currentTimeMillis() % 1000;
         for (File file : arrayDeArquivo) {
-            
+            String abreArquivo = new ProcessaArquivo().abreArquivo(arq);
+            System.out.println(abreArquivo);
         }
+        long fim = System.currentTimeMillis() ;
+        System.out.println("Tempo: "+(fim-inicio)+"ms");
     }
 
 }
