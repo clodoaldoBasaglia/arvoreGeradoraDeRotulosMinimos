@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,9 +27,11 @@ public class ArvoreGeradoraDeRotulosMinimos {
     public static void main(String[] args) {
         // TODO code application logic here
         LerArquivo la = new LerArquivo();
-        String caminho = "/home/clodoaldo/Documentos/APS.Teoria.dos.Grafos.2017.1/instancias/";
+//        String caminho = "/home/clodoaldo/Documentos/APS.Teoria.dos.Grafos.2017.1/instancias/";
+        String caminho = "/home/todos/alunos/cm/a968692/Documentos/grafos/instancias/";
 //        String caminho = "C:\\Users\\Suporte\\Documents\\APS.Teoria.dos.Grafos.2017.1\\instancias";
         SondaDeArquivos sdd = new SondaDeArquivos();
+        System.out.println(sdd.sondaDeArquivos(caminho).size());
         Map<String, ArrayList<String>> sondaDeArquivos = sdd.sondaDeArquivos(caminho);
         Iterator<Map.Entry<String, ArrayList<String>>> iterator = sondaDeArquivos.entrySet().iterator();
         Map<String,ArrayList<Integer[][]>>  mapaGrafos = new HashMap<>();
@@ -38,12 +41,17 @@ public class ArvoreGeradoraDeRotulosMinimos {
             for (String string : get) {
                 try {
                     ArrayList<Integer[][]> leArquivo = la.leArquivo(caminho + chave + "/" + string);
-                    mapaGrafos.put(string, leArquivo);
+                    mapaGrafos.put(chave+":"+string, leArquivo);
                 } catch (IOException ex) {
                     Logger.getLogger(ArvoreGeradoraDeRotulosMinimos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
+//        Iterator<Map.Entry<String, ArrayList<Integer[][]>>> iterator1 = mapaGrafos.entrySet().iterator();
+//        while(iterator1.hasNext()){
+//            System.out.println(iterator1.next().getKey());
+//        }
+        System.out.println(mapaGrafos.size());
     }
 
 }

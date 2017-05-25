@@ -85,10 +85,10 @@ public class LerArquivo {
         br.close();
         fr.close();
 
-        //Imprimir Array de grafos pra testar
-        for (Integer[][] grafo : Grafos){
-        	printMatriz(grafo, vertices);
-        }
+//        //Imprimir Array de grafos pra testar
+//        for (Integer[][] grafo : Grafos){
+//        	printMatriz(grafo, vertices);
+//        }
         
         return Grafos;
     }
