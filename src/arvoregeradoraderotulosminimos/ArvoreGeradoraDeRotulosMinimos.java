@@ -27,9 +27,7 @@ public class ArvoreGeradoraDeRotulosMinimos {
     public static void main(String[] args) {
         // TODO code application logic here
         LerArquivo la = new LerArquivo();
-//        String caminho = "/home/clodoaldo/Documentos/APS.Teoria.dos.Grafos.2017.1/instancias/";
-        String caminho = "/home/todos/alunos/cm/a968692/Documentos/grafos/instancias/";
-//        String caminho = "C:\\Users\\Suporte\\Documents\\APS.Teoria.dos.Grafos.2017.1\\instancias";
+        String caminho = "/home/clodoaldo/Documentos/APS.Teoria.dos.Grafos.2017.1/instancias/";
         SondaDeArquivos sdd = new SondaDeArquivos();
         System.out.println(sdd.sondaDeArquivos(caminho).size());
         Map<String, ArrayList<String>> sondaDeArquivos = sdd.sondaDeArquivos(caminho);
@@ -52,6 +50,7 @@ public class ArvoreGeradoraDeRotulosMinimos {
 //            System.out.println(iterator1.next().getKey());
 //        }
         System.out.println(mapaGrafos.size());
-    }
+
+    } 
 
 }
