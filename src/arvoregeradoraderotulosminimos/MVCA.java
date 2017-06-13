@@ -7,10 +7,10 @@ import java.util.ArrayList;
 */
 
 public class MVCA {
-    
+	
     public static ArrayList<Integer> MVCA(Grafo graph){
-        //Conjunto contendo os rótulos já utilizados, e que conectam o maior numero de componentes.
-        ArrayList<Integer> rotulosUtilizados = new ArrayList<Integer>();
+    	//Conjunto contendo os rÃ³tulos jÃ¡ utilizados, e que conectam o maior numero de componentes.
+    	ArrayList<Integer> rotulosUtilizados = new ArrayList<Integer>();
         
         //Rotulos utilizados em cada iteracao que procura o rotulo com maior numero de componentes conexas;
         ArrayList<Integer> rotulosUtilizadosNaIteracao = new ArrayList<Integer>();
@@ -19,28 +19,28 @@ public class MVCA {
         Grafo subgrafo = new Grafo();
         Grafo h = new Grafo(graph.getQuantidadeVertices());
         
-        //Númedo de componentes conexas do Grafo H
-        //Inicialmente a quantidade de CC é a quantidade de vertices do grafo
+        //NÃºmedo de componentes conexas do Grafo H
+        //Inicialmente a quantidade de CC Ã© a quantidade de vertices do grafo
         int quantidadeCC = graph.getQuantidadeVertices();
 
-      //Quantidade de CC do subgrafo para cada iteração, em busca dos rotulos minimos
+      //Quantidade de CC do subgrafo para cada iteraÃ§Ã£o, em busca dos rotulos minimos
         int quantCCSubgrafo;
         
         //Menor label da iteracao
         int menorLabel = -1;
         int aux = 0;
         
-        //iterar enquanto existir mais de uma componente conexa, ou seja, enquanto H não ser apenas uma Componente Conexa
+        //iterar enquanto existir mais de uma componente conexa, ou seja, enquanto H nÃ£o ser apenas uma Componente Conexa
        do{
             rotulosUtilizadosNaIteracao = new ArrayList<Integer>(rotulosUtilizados); 
             
             for (int i = 0; i < graph.getQuantidadeDeRotulos(); i++) {
                 //System.out.println("i: " + i);
-                
-                //seleciona um rotulo nao usado c (pertencente a L-C) que minimiza Comp(C U {c})
-                //Pega apenas os rotulos que ainda nao foram usados na iteração, de 0 a QtdRotulos.
+            	
+            	//seleciona um rotulo nao usado c (pertencente a L-C) que minimiza Comp(C U {c})
+            	//Pega apenas os rotulos que ainda nao foram usados na iteraÃ§Ã£o, de 0 a QtdRotulos.
                 if (!rotulosUtilizadosNaIteracao.contains(i)){
-                    //System.out.println("Vezes laço do: " + aux);                    
+                    //System.out.println("Vezes laÃ§o do: " + aux);                    
                     
                     //Gera e adiciona subgrafo com o rotulo i;
                     Grafo sub = geraSubgrafo(graph, h, i);
@@ -58,6 +58,12 @@ public class MVCA {
                 }
                 
             }
+            //Caso o grafo nao seja conexo. Significa que esta em loop, o rotulo continua o mesmo da iteracao passada.
+            if (rotulosUtilizados.contains(menorLabel)){
+            	System.out.println("Grafo nÃ£o conexo");
+            	return null;
+            }
+            	
             aux++;
             rotulosUtilizados.add(menorLabel);
             h = subgrafo;
@@ -68,17 +74,17 @@ public class MVCA {
         return rotulosUtilizados;
     }
 
-    public static int calculaComponentesConexas(Grafo g) {
-           
+	public static int calculaComponentesConexas(Grafo g) {
+	       
         int numComponentesConexas = 0;
         
         for (int i = 0; i < g.getQuantidadeVertices(); i++) {
             //Se a cor ainda for "-1", procura componentes conexas, pois ainda 
-            //não passou por todas as componentes conexas
+            //nÃ£o passou por todas as componentes conexas
             if (g.getCorVertices()[i] == -1) {
-                numComponentesConexas++;
+            	numComponentesConexas++;
                 //System.out.println(numCC);
-                //toda vez que volta da busca em largura, é uma nova componenete conexa
+                //toda vez que volta da busca em largura, Ã© uma nova componenete conexa
                 buscaEmProfundidade(g, i, numComponentesConexas);
             }
         }
@@ -93,7 +99,7 @@ public class MVCA {
         g.getCorVertices()[i] = numCC;
         
         for (int j = 0; j < g.getQuantidadeVertices(); j++) {
-//          System.out.println("if((" + g.getComponenteConexa()[j] + " == -1) && ("+ g.getMatrizAdjacencia()[i][j] +")   != -1)");
+//        	System.out.println("if((" + g.getComponenteConexa()[j] + " == -1) && ("+ g.getMatrizAdjacencia()[i][j] +")   != -1)");
         
             //if ((g.getMatrizAdjacencia()[i][j] != -1) && (g.getComponenteConexa()[j] == -1)) {
             if((g.getCorVertices()[j] == -1) && (g.getMatrizAdjacencia()[i][j] != -1) && (g.getMatrizAdjacencia()[i][j]) != 2){
