@@ -48,17 +48,25 @@ public class ArvoreGeradoraDeRotulosMinimosTeste {
     	//Fazer isso uma vez para cada pasta
     	String pasta = "group2";
     	objPasta.put("Diretorio", pasta);
+    	int qtdGrafos = 0;
     	
     	//Fazer o laço de grafos para cada arquivo dentro da pasta
     	for(Grafo graph : grafos){
-    		rotulosUtilizados = MVCA.MVCA(graph);
-    		funcObjetiva += rotulosUtilizados.size();   		
+    		//Se retornar nulo significa que o grafo não é conexo
+    		if ((rotulosUtilizados = MVCA.MVCA(graph)) != null){
+    			funcObjetiva += rotulosUtilizados.size();
+    			qtdGrafos++;
+    		}
     	}
     	long endTime = System.currentTimeMillis();
-		System.out.println(funcObjetiva + " e " + grafos.size());
+		System.out.println(funcObjetiva + " e " + qtdGrafos);
 		
 		//fazer isso para cada Arquivo dentro da pasta X
-    	objPasta.put("Arquivos", AGRMOutput((funcObjetiva/grafos.size()), caminho2, (endTime - startTime)));
+		//Se a func objetivo for 0, quer dizer que todos os grafos do arquivo nao sao conexos.
+		if(funcObjetiva != 0)
+			funcObjetiva = funcObjetiva/qtdGrafos;
+		
+    	objPasta.put("Arquivos", AGRMOutput((funcObjetiva), caminho2, (endTime - startTime)));
     	
     	//Apos gravar todos os arquivos da pasta X, gravar em Pastas e fazer o mesmo para a proxima pasta, até não existir mais pastas
     	objPastas.add(objPasta);
