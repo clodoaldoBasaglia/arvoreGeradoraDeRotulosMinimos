@@ -27,7 +27,7 @@ import com.google.gson.JsonArray;
  *
  * @author clodoaldo
  */
-public class ArvoreGeradoraDeRotulosMinimos {
+public class ArvoreGeradoraDeRotulosMinimosTeste {
 
     /**
      * @param args the command line arguments
@@ -47,21 +47,6 @@ public class ArvoreGeradoraDeRotulosMinimos {
         long endTime = System.currentTimeMillis();
         System.out.println(funcObjetiva + " e " + grafos.size()); 
         AGRMOutput((funcObjetiva/grafos.size()),"HD500", caminho2, (endTime - startTime));
-        
-//        LerArquivo la = new LerArquivo();
-//        String caminho = "/home/clodoaldo/Documentos/APS.Teoria.dos.Grafos.2017.1/instancias/";
-//        SondaDeArquivos sdd = new SondaDeArquivos();
-//        Map<String, ArrayList<String>> sondaDeArquivos = sdd.sondaDeArquivos(caminho);
-//        Iterator<Map.Entry<String, ArrayList<String>>> iterator = sondaDeArquivos.entrySet().iterator();
-//        while (iterator.hasNext()) {
-//            String chave = iterator.next().getKey();
-//            ArrayList<String> get = sondaDeArquivos.get(chave);
-//            for (String string : get) {
-////                System.out.println(caminho+chave+"/"+string);
-//                File arquivo = la.LerArquivo(caminho);
-//                System.out.println(arquivo.getTotalSpace());
-//            }
-//        }
 
     }
     
