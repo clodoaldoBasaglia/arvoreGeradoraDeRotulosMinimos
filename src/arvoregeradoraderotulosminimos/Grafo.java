@@ -1,12 +1,27 @@
 package arvoregeradoraderotulosminimos;
 
+import aps.ImportaMatriz;
+
 /**
 *
 * @author luisfernando
 */
 public class Grafo {
+	
+	public Grafo(int tamanho) {
+        super();
+        this.matrizAdjacencia = inicializaMatriz(tamanho);
+        this.setQuantidadeVertices(tamanho);
+        this.setCorVertices(LerArquivo.inicializaCorVertices(tamanho));
 
-	 private Integer matrizAdjacencia[][];
+    }
+
+    public Grafo() {
+        super();
+    }
+
+
+	 	private Integer[][] matrizAdjacencia;
 	    private int qtdVertices;
 	    private int qtdRotulos;
 	    private int[] corVertices;
@@ -43,4 +58,13 @@ public class Grafo {
 	        this.qtdVertices = vertices;
 	    }
 
+	    public Integer[][] inicializaMatriz(int tamanho) {
+	        Integer matriz[][] = new Integer[tamanho][tamanho];
+	        for (int i = 0; i < tamanho; i++) {
+	            for (int j = 0; j < tamanho; j++) {
+	                matriz[i][j] = -1;
+	            }
+	        }
+	        return matriz;
+	    }
 }

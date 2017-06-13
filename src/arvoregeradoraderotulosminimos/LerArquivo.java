@@ -24,7 +24,7 @@ import javax.lang.model.type.NullType;
 public class LerArquivo {
 
 //   
-	public static ArrayList <Integer[][]> leArquivo(String caminho) throws IOException {
+    public static ArrayList <Grafo> leArquivo(String caminho) throws IOException {
         File arquivo = new File(caminho);
         FileReader fr = new FileReader(arquivo);
         BufferedReader br = new BufferedReader(fr);
@@ -38,12 +38,14 @@ public class LerArquivo {
         String[] s = linha.split(" ");
 
         int vertices = Integer.parseInt(s[0]);
-        int rotulos = Integer.parseInt(s[1]);
+        int rotulos = Integer.parseInt(s[1]);        
+        int verticesCoresVisitas[] = inicializaCorVertices(vertices);
 
         int indice = vertices;
 //        System.out.println("vertices: " + indice);
         
-        ArrayList <Integer[][]> Grafos = new ArrayList<>();
+        ArrayList <Grafo> Grafos = new ArrayList<>();
+        Grafo Graph = new Grafo();
         Integer[][] matrizAdjacencia = new Integer[vertices][vertices];
                
         int i = 0;
@@ -56,10 +58,15 @@ public class LerArquivo {
             if (i % vertices == 0) {
                 //Caso não seja a primeira execução, para não gerar um grafo totalmente nulo
                 if (aux != 0) {
-            		Grafos.add(matrizAdjacencia);
-            		matrizAdjacencia = new Integer[vertices][vertices];
-            	}
-            	i = 0;
+                    Graph.setMatrizAdjacencia(matrizAdjacencia);
+                    Graph.setQuantidadeDeRotulos(rotulos);
+                    Graph.setQuantidadeVertices(vertices);
+                    Graph.setCorVertices(verticesCoresVisitas);
+                    Grafos.add(Graph);
+                    matrizAdjacencia = new Integer[vertices][vertices];
+                    Graph = new Grafo();
+                }
+                i = 0;
             }
             s = linha.split(" ");
             
@@ -68,7 +75,7 @@ public class LerArquivo {
                 //Caso não seja uma linha em branco
                 if (!s[j].equals("")) {
                 
-                	matrizAdjacencia[indice - i - 1][j] = Integer.parseInt(s[j]);
+                    matrizAdjacencia[indice - i - 1][j] = Integer.parseInt(s[j]);
                         //Espelhando a matriz, pra criar a diagonal superior da Matriz(Grafo não dirigido)
                         matrizAdjacencia[j][indice - i - 1] = Integer.parseInt(s[j]);
                 }
@@ -80,28 +87,38 @@ public class LerArquivo {
             aux++;
             i++;
         }
-        Grafos.add(matrizAdjacencia);
+        Graph = new Grafo();
+        Graph.setMatrizAdjacencia(matrizAdjacencia);
+        Graph.setQuantidadeDeRotulos(rotulos);
+        Graph.setQuantidadeVertices(vertices);
+        Graph.setCorVertices(verticesCoresVisitas);
+        Grafos.add(Graph);       
         
         br.close();
         fr.close();
-
-//        //Imprimir Array de grafos pra testar
-//        for (Integer[][] grafo : Grafos){
-//        	printMatriz(grafo, vertices);
-//        }
+        
+        for(Grafo graph : Grafos)
+            printMatriz(graph, vertices);
         
         return Grafos;
+}
+
+    public static int[] inicializaCorVertices(int qtdVertices){
+        int verticesCoresVisitas[] = new int[qtdVertices]; 
+        for (int i = 0; i < qtdVertices; i++) {
+            verticesCoresVisitas[i] = -1;
+        }
+        return verticesCoresVisitas;
     }
-  
-  public static void printMatriz(Integer[][] matriz, int n) {
+    
+    public static void printMatriz(Grafo graph, int n) {
         System.out.println("print matriz:");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                System.out.print(matriz[i][j] + " ");
+                System.out.print(graph.getMatrizAdjacencia()[i][j] + " ");
             }
             System.out.println(" ");
         }
     }
 }
-
 
