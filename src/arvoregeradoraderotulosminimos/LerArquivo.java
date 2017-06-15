@@ -112,13 +112,13 @@ public class LerArquivo {
     }
     
     public static void printMatriz(Grafo graph, int n) {
-        System.out.println("print matriz:");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(graph.getMatrizAdjacencia()[i][j] + " ");
-            }
-            System.out.println(" ");
-        }
+//        System.out.println("print matriz:");
+//        for (int i = 0; i < n; i++) {
+//            for (int j = 0; j < n; j++) {
+//                System.out.print(graph.getMatrizAdjacencia()[i][j] + " ");
+//            }
+//            System.out.println(" ");
+//        }
     }
 }
 

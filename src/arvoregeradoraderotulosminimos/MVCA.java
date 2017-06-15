@@ -70,7 +70,7 @@ public class MVCA {
             
        }while(quantidadeCC>1);
         
-        LerArquivo.printMatriz(h, h.getQuantidadeVertices());
+//        LerArquivo.printMatriz(h, h.getQuantidadeVertices());
         return rotulosUtilizados;
     }
 
