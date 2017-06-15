@@ -58,7 +58,7 @@ public class ArvoreGeradoraDeRotulosMinimosTeste {
             }
         }
         long endTime = System.currentTimeMillis();
-        System.out.println(funcObjetiva + " e " + qtdGrafos);
+//        System.out.println(funcObjetiva + " e " + qtdGrafos);
 
         //fazer isso para cada Arquivo dentro da pasta X
         //Se a func objetivo for 0, quer dizer que todos os grafos do arquivo nao sao conexos.

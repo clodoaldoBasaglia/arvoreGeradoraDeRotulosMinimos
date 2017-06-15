@@ -97,8 +97,8 @@ public class LerArquivo {
         br.close();
         fr.close();
         
-        for(Grafo graph : Grafos)
-            printMatriz(graph, vertices);
+//        for(Grafo graph : Grafos)
+//            printMatriz(graph, vertices);
         
         return Grafos;
 }
