@@ -1,0 +1,13 @@
+[
+  {
+    "Diretorio": "group2",
+    "Arquivos": [
+      {
+        "Arquivo": "HDGraph20_20.txt",
+        "Tempo de execucao": "42 ms",
+        "Quantidade de grafos conexos": 10,
+        "Media de Rotulos Minimos": 2.5
+      }
+    ]
+  }
+]
